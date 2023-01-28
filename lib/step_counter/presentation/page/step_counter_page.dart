@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:steps_counter/core/data/data_status.dart';
-import 'package:steps_counter/step_counter/business_logic%20/step_counter_bloc.dart';
-import 'package:steps_counter/step_counter/business_logic%20/step_counter_event.dart';
-import 'package:steps_counter/step_counter/business_logic%20/step_counter_state.dart';
+import 'package:steps_counter/step_counter/bloc/step_counter_bloc.dart';
+import 'package:steps_counter/step_counter/bloc/step_counter_event.dart';
+import 'package:steps_counter/step_counter/bloc/step_counter_state.dart';
 import 'package:steps_counter/step_counter/data/repository/step_counter_repository.dart';
 import 'package:steps_counter/step_counter/presentation/widget/edit_step_goal_widget.dart';
 

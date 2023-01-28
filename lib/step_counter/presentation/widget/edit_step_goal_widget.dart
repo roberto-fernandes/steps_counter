@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:steps_counter/core/utils/constants.dart';
-import 'package:steps_counter/step_counter/business_logic%20/step_counter_bloc.dart';
-import 'package:steps_counter/step_counter/business_logic%20/step_counter_event.dart';
+import 'package:steps_counter/step_counter/bloc/step_counter_bloc.dart';
+import 'package:steps_counter/step_counter/bloc/step_counter_event.dart';
 
 class EditStepGoalWidget extends StatefulWidget {
   const EditStepGoalWidget({
