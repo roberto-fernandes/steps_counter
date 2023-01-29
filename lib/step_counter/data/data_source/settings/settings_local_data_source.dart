@@ -12,4 +12,10 @@ class SettingsLocalDataSource extends SettingsDataSource {
     final prefs = await _prefs;
     return prefs.getInt(PrefsKeys.stepGoals);
   }
+
+  @override
+  Future<bool?> fetchNotificationStatus() async {
+    final prefs = await _prefs;
+    return prefs.getBool(PrefsKeys.notificationStatus);
+  }
 }

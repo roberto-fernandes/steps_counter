@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:steps_counter/core/utils/constants.dart';
-import 'package:steps_counter/step_counter/bloc/step_counter_bloc.dart';
-import 'package:steps_counter/step_counter/bloc/step_counter_event.dart';
+import 'package:steps_counter/step_counter/bloc/settings/settings_counter_bloc.dart';
+import 'package:steps_counter/step_counter/bloc/settings/settings_event.dart';
 
 class EditStepGoalWidget extends StatefulWidget {
   const EditStepGoalWidget({
@@ -20,13 +20,13 @@ class _EditStepGoalWidgetState extends State<EditStepGoalWidget> {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      final state = context.watch<StepCounterBloc>().state;
+      final state = context.watch<SettingsBloc>().state;
       return ElevatedButton(
         onPressed: () => _showSetGoalDialog(
           context: context,
           initialGoal: state.goal ?? Defaults.stepsGoal,
           onGoalSelected: (int goal) {
-            context.read<StepCounterBloc>().add(StepGoalSet(goal));
+            context.read<SettingsBloc>().add(StepGoalSet(goal));
           },
         ),
         child: const Text('Set Goal'),
