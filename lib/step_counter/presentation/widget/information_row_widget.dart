@@ -14,18 +14,18 @@ class InformationRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.all(16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _InformationItem(
-            icon: const Icon(Icons.add),
+            icon: Image.asset(Assets.steps),
             goal: stepsGoal,
             description: 'Steps',
             current: currentSteps,
           ),
           _InformationItem(
-            icon: const Icon(Icons.add),
+            icon: Image.asset(Assets.flame),
             description: 'Calories',
             current: currentSteps != null
                 ? currentSteps! * Defaults.caloriesPerStep
@@ -59,12 +59,14 @@ class _InformationItem extends StatelessWidget {
     return Column(
       children: [
         icon,
+        const SizedBox(height: 8),
         Text(
           '${current ?? '-'}/${goal ?? '-'}',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
         ),
+        const SizedBox(height: 2),
         Text(
           description,
           style: Theme.of(context).textTheme.bodySmall,

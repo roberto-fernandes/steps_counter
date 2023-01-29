@@ -11,9 +11,9 @@ final defaultTheme = ThemeData(
   primaryColor: _kOrange,
   colorScheme: const ColorScheme(
     brightness: Brightness.light,
-    primary: _kOrange,
+    primary: _fadeGray,
     onPrimary: _softBlue,
-    secondary: _darkBlue,
+    secondary: _kOrange,
     onSecondary: _fadeGray,
     error: Colors.red,
     onError: Colors.white,

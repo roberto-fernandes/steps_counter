@@ -34,6 +34,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icons/flame.png
+    - assets/icons/2.0x/flame.png
+    - assets/icons/3.0x/flame.png
+    - assets/icons/steps.png
+    - assets/icons/2.0x/steps.png
+    - assets/icons/3.0x/steps.png
 
 fonts:
   - family: lato

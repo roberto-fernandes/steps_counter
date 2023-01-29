@@ -27,7 +27,8 @@ class CircularIndicator extends StatelessWidget {
           ),
         ),
         circularStrokeCap: CircularStrokeCap.round,
-        progressColor: theme.colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.onSecondary,
+        progressColor: Theme.of(context).colorScheme.secondary,
       ),
     );
   }

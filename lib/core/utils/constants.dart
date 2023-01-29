@@ -6,6 +6,10 @@ class Defaults {
   static const int snackBarDurationMilliseconds = 1000;
 }
 
+class Assets {
+  static const String steps = 'assets/icons/steps.png';
+  static const String flame = 'assets/icons/flame.png';
+}
 
 class PrefsKeys {
   static const String stepGoals = 'step_goals';

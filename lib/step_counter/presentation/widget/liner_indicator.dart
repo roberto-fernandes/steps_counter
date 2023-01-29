@@ -38,7 +38,8 @@ class LinearIndicator extends StatelessWidget {
                 animationDuration: 400,
                 percent: min(percentage / 100, 1.0),
                 barRadius: const Radius.circular(16),
-                progressColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: Theme.of(context).colorScheme.onSecondary,
+                progressColor: Theme.of(context).colorScheme.secondary,
               );
             },
           ),
