@@ -7,7 +7,6 @@ enum DataSourceType {
 }
 
 abstract class BaseRepository<T> {
-
   BaseRepository({
     this.localDataSource,
     this.networkDataSource,

@@ -4,7 +4,8 @@ import 'package:steps_counter/core/data/data_status.dart';
 import 'package:steps_counter/step_counter/bloc/step_counter_bloc.dart';
 import 'package:steps_counter/step_counter/bloc/step_counter_event.dart';
 import 'package:steps_counter/step_counter/bloc/step_counter_state.dart';
-import 'package:steps_counter/step_counter/data/repository/step_counter_repository.dart';
+import 'package:steps_counter/step_counter/data/repository/health_repository.dart';
+import 'package:steps_counter/step_counter/data/repository/settings_repository.dart';
 import 'package:steps_counter/step_counter/presentation/widget/edit_step_goal_widget.dart';
 
 class StepCounterPage extends StatelessWidget {
@@ -12,8 +13,11 @@ class StepCounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => StepCounterRepository(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(create: (context) => HealthRepository()),
+        RepositoryProvider(create: (context) => SettingsRepository()),
+      ],
       child: const _StepCounterView(),
     );
   }
@@ -26,7 +30,8 @@ class _StepCounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => StepCounterBloc(
-        RepositoryProvider.of<StepCounterRepository>(context),
+        RepositoryProvider.of<HealthRepository>(context),
+        RepositoryProvider.of<SettingsRepository>(context),
       )..add(StepCounterStarted()),
       child: Scaffold(
         appBar: AppBar(

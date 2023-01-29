@@ -3,17 +3,20 @@ import 'package:steps_counter/core/data/data_status.dart';
 import 'package:steps_counter/step_counter/bloc/step_counter_event.dart';
 import 'package:steps_counter/step_counter/bloc/step_counter_state.dart';
 import 'package:steps_counter/step_counter/data/model/health_info.dart';
-import 'package:steps_counter/step_counter/data/repository/step_counter_repository.dart';
+import 'package:steps_counter/step_counter/data/repository/health_repository.dart';
+import 'package:steps_counter/step_counter/data/repository/settings_repository.dart';
 
 class StepCounterBloc extends Bloc<StepCounterEvent, StepCounterState> {
   StepCounterBloc(
-    this._stepCounterRepository,
+    this._healthRepository,
+    this._settingsRepository,
   ) : super(const StepCounterState()) {
     on<StepCounterStarted>(_onStarted);
     on<StepGoalSet>(_onStepGoalSet);
   }
 
-  final StepCounterRepository _stepCounterRepository;
+  final HealthRepository _healthRepository;
+  final SettingsRepository _settingsRepository;
 
   Future<void> _onStarted(
     StepCounterEvent event,
@@ -22,8 +25,8 @@ class StepCounterBloc extends Bloc<StepCounterEvent, StepCounterState> {
     _emitLoadingState(emit);
     try {
       final data = await Future.wait([
-        _stepCounterRepository.fetchHealthInfo(),
-        _stepCounterRepository.fetchStepsGoal(),
+        _healthRepository.fetchHealthInfo(),
+        _settingsRepository.fetchStepsGoal(),
       ]);
       final healthInfo = data[0] as HealthInfo?;
       final stepsGoal = data[1] as int;
@@ -49,7 +52,7 @@ class StepCounterBloc extends Bloc<StepCounterEvent, StepCounterState> {
     StepGoalSet event,
     Emitter<StepCounterState> emit,
   ) async {
-    _stepCounterRepository.setStepsGoal(event.goal);
+    _settingsRepository.setStepsGoal(event.goal);
     emit(
       state.copyWith(
         goal: event.goal,
