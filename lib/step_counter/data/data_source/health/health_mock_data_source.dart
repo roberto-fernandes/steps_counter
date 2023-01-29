@@ -13,6 +13,6 @@ class HealthMockDataSource extends HealthDataSource {
   Future<HealthInfo?> fetchHealthInfo() async {
     await awaitDelay();
     final randomSteps = Random().nextInt(1500);
-    return HealthInfo(steps: randomSteps, calories: randomSteps * 2);
+    return HealthInfo(steps: randomSteps);
   }
 }

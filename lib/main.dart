@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:steps_counter/core/app_setup.dart';
+import 'package:steps_counter/core/presentation/theme.dart';
 import 'package:steps_counter/step_counter/presentation/page/step_counter_page.dart';
 
 void main() async {
@@ -16,9 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Step Counter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: defaultTheme,
       home: const StepCounterPage(),
     );
   }

@@ -6,7 +6,6 @@ part 'health_info.g.dart';
 class HealthInfo {
   const HealthInfo({
     required this.steps,
-    required this.calories,
   });
 
   factory HealthInfo.fromJson(Map<String, dynamic> json) {
@@ -16,5 +15,4 @@ class HealthInfo {
   Map<String, dynamic> toJson() => _$HealthInfoToJson(this);
 
   final int steps;
-  final int calories;
 }

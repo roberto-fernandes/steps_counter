@@ -55,11 +55,12 @@ class NotificationWidget extends StatelessWidget {
             context.read<SettingsBloc>().add(NotificationTogged());
           },
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 24),
             child: Icon(
               state.notificationStatus
                   ? Icons.notifications_outlined
                   : Icons.notifications_off_outlined,
+              size: 30,
             ),
           ),
         );

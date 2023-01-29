@@ -23,6 +23,7 @@ dependencies:
   flutter_local_notifications: ^13.0.0
   notification_permissions: ^0.6.1
   workmanager: ^0.5.1
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +34,17 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+fonts:
+  - family: lato
+    fonts:
+      - asset: fonts/Lato-Black.ttf
+      - asset: fonts/Lato-BlackItalic.ttf
+      - asset: fonts/Lato-Bold.ttf
+      - asset: fonts/Lato-BoldItalic.ttf
+      - asset: fonts/Lato-Italic.ttf
+      - asset: fonts/Lato-Light.ttf
+      - asset: fonts/Lato-LightItalic.ttf
+      - asset: fonts/Lato-Regular.ttf
+      - asset: fonts/Lato-Thin.ttf
+      - asset: fonts/Lato-ThinItalic.ttf

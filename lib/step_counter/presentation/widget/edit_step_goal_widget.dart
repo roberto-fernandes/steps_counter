@@ -1,14 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:steps_counter/core/utils/constants.dart';
 import 'package:steps_counter/step_counter/bloc/settings/settings_counter_bloc.dart';
 import 'package:steps_counter/step_counter/bloc/settings/settings_event.dart';
 
 class EditStepGoalWidget extends StatefulWidget {
   const EditStepGoalWidget({
+    required this.initialGoal,
     super.key,
   });
+
+  final int initialGoal;
 
   @override
   State<EditStepGoalWidget> createState() => _EditStepGoalWidgetState();
@@ -18,20 +20,30 @@ class _EditStepGoalWidgetState extends State<EditStepGoalWidget> {
   final TextEditingController _controller = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _controller.text = '${widget.initialGoal}';
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      final state = context.watch<SettingsBloc>().state;
-      return ElevatedButton(
+    return SizedBox(
+      height: 30,
+      child: TextButton.icon(
         onPressed: () => _showSetGoalDialog(
           context: context,
-          initialGoal: state.goal ?? Defaults.stepsGoal,
+          initialGoal: widget.initialGoal,
           onGoalSelected: (int goal) {
             context.read<SettingsBloc>().add(StepGoalSet(goal));
           },
         ),
-        child: const Text('Set Goal'),
-      );
-    });
+        icon: const Icon(
+          Icons.edit,
+          size: 14,
+        ),
+        label: const Text('Daily Goal'),
+      ),
+    );
   }
 
   Future _showSetGoalDialog({
