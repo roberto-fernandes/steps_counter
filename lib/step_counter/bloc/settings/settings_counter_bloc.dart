@@ -67,8 +67,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) async {
     final isNotificationsOn = !state.notificationStatus;
     if (isNotificationsOn) {
-      final hasPermissions = await _initializeDailyNotification();
-      if(!hasPermissions) {
+      final hasPermissions = await _initializeDailyNotification(emit);
+      if (!hasPermissions) {
         return;
       }
     }
@@ -82,8 +82,21 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
   }
 
-  Future<bool> _initializeDailyNotification() async {
-    final notificationHelper = locator.get<NotificationsHelper>();
-    return notificationHelper.initializeDailyNotification();
+  Future<bool> _initializeDailyNotification(
+    Emitter<SettingsState> emit,
+  ) async {
+    try {
+      final notificationHelper = locator.get<NotificationsHelper>();
+      return notificationHelper.initializeDailyNotification();
+    } catch (error) {
+      emit(
+        state.copyWith(
+          status: DataStatus.failure,
+          error: NotificationsHelper.notificationPermissionNotGranted,
+          notificationStatus: false,
+        ),
+      );
+      return false;
+    }
   }
 }

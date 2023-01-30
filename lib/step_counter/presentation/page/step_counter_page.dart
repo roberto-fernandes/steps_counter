@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,13 +32,13 @@ class StepCounterPage extends StatelessWidget {
         RepositoryProvider(
             create: (context) => locator.get<SettingsRepository>()),
       ],
-      child: const _StepCounterView(),
+      child: const StepCounterView(),
     );
   }
 }
 
-class _StepCounterView extends StatelessWidget {
-  const _StepCounterView({Key? key}) : super(key: key);
+class StepCounterView extends StatelessWidget {
+  const StepCounterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class _StepCounterView extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 70),
-                const _StepCounterContent(),
+                const StepCounterContent(),
               ],
             ),
           ),
@@ -84,8 +86,8 @@ class _StepCounterView extends StatelessWidget {
   }
 }
 
-class _StepCounterContent extends StatelessWidget {
-  const _StepCounterContent({Key? key}) : super(key: key);
+class StepCounterContent extends StatelessWidget {
+  const StepCounterContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -147,3 +149,4 @@ class _StepCounterContent extends StatelessWidget {
     return stepsPercentage;
   }
 }
+

@@ -10,10 +10,10 @@ enum DataSourceType {
 
 abstract class BaseRepository<T> {
   BaseRepository({
+    required DataSourceType defaultDataSourceType,
     this.localDataSource,
     this.networkDataSource,
     this.mockDataSource,
-    DataSourceType defaultDataSourceType = DataSourceType.local,
   }){
     _setDefaultDataSource(defaultDataSourceType);
   }

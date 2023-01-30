@@ -1,6 +1,5 @@
 
 
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:steps_counter/core/data/base_repository.dart';
 import 'package:steps_counter/core/locator/locator.dart';
@@ -8,10 +7,15 @@ import 'package:steps_counter/core/utils/constants.dart';
 import 'package:steps_counter/step_counter/data/data_source/settings/settings_data_source.dart';
 import 'package:steps_counter/step_counter/data/data_source/settings/settings_local_data_source.dart';
 
-@lazySingleton
 class SettingsRepository extends BaseRepository<SettingsDataSource> {
-  SettingsRepository() : super(
-    localDataSource: locator.get<SettingsLocalDataSource>(),
+  SettingsRepository({
+    DataSourceType defaultDataSourceType = DataSourceType.local,
+    SettingsDataSource? localDataSource,
+    SettingsDataSource? mockDataSource,
+  }) : super(
+    localDataSource: localDataSource ?? locator.get<SettingsLocalDataSource>(),
+    defaultDataSourceType: defaultDataSourceType,
+    mockDataSource: mockDataSource,
   );
 
   Future<int> fetchStepsGoal() async {

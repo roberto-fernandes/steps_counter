@@ -17,7 +17,7 @@ class HealthBloc extends Bloc<HealthEvent, HealthState> {
     HealthEvent event,
     Emitter<HealthState> emit,
   ) async {
-    _emitLoadingState(emit);
+    emit(state.copyWith(status: DataStatus.loading));
     try {
       final healthInfo = await _healthRepository.fetchHealthInfo();
       emit(
@@ -34,9 +34,5 @@ class HealthBloc extends Bloc<HealthEvent, HealthState> {
         ),
       );
     }
-  }
-
-  void _emitLoadingState(Emitter<HealthState> emit) {
-    emit(state.copyWith(status: DataStatus.loading));
   }
 }
