@@ -5,6 +5,16 @@ import 'package:steps_counter/core/utils/work_manager_helper.dart';
 import 'package:steps_counter/step_counter/data/repository/health_repository.dart';
 import 'package:steps_counter/step_counter/data/repository/settings_repository.dart';
 
+
+/// Class `NotificationsHelper` is used to manage the device notifications.
+///
+/// It makes use of [WorkManagerHelper], [HealthRepository], and [SettingsRepository] to
+/// initialize, handle and show the daily and step counter notifications.
+///
+/// The class also checks for notification permission and requests it if not granted.
+///
+/// Use the `initializeDailyNotification` method to initialize daily notifications.
+/// Use the `handleStepCounterNotificationTack` method to handle step counter notifications.
 @LazySingleton()
 class NotificationsHelper {
   static const String notificationPermissionNotGranted =
@@ -32,7 +42,7 @@ class NotificationsHelper {
     return true;
   }
 
-  Future<bool> handleStepCounterNotificationTack() async {
+  Future<bool> handleStepCounterNotificationTask() async {
     PermissionStatus permissionStatus = await _getCheckNotificationPermStatus();
     if (permissionStatus != PermissionStatus.granted) {
       return false;

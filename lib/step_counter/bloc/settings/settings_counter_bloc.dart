@@ -6,6 +6,8 @@ import 'package:steps_counter/step_counter/bloc/settings/settings_event.dart';
 import 'package:steps_counter/step_counter/bloc/settings/settings_state.dart';
 import 'package:steps_counter/step_counter/data/repository/settings_repository.dart';
 
+/// Handles he events related to Settings information
+/// and updates the state accordingly.
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc(
     this._settingsRepository,
@@ -32,7 +34,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       emit(
         state.copyWith(
           status: DataStatus.success,
-          goal: stepsGoal,
+          stepsGoal: stepsGoal,
           error: null,
           notificationStatus: notificationStatus,
         ),
@@ -56,7 +58,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       state.copyWith(
         status: DataStatus.success,
         error: null,
-        goal: event.goal,
+        stepsGoal: event.goal,
       ),
     );
   }

@@ -4,6 +4,8 @@ import 'package:steps_counter/step_counter/bloc/health/health_event.dart';
 import 'package:steps_counter/step_counter/bloc/health/health_state.dart';
 import 'package:steps_counter/step_counter/data/repository/health_repository.dart';
 
+/// Handles he events related to Health information
+/// and updates the state accordingly.
 class HealthBloc extends Bloc<HealthEvent, HealthState> {
   HealthBloc(
     this._healthRepository,

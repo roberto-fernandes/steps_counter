@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// [SettingsEvent] is an abstract base class for settings events.
 abstract class SettingsEvent extends Equatable {
   @override
   List<Object?> get props => [];

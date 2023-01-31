@@ -5,24 +5,30 @@ import 'package:steps_counter/core/locator/locator.dart';
 import 'package:steps_counter/core/utils/notification_helper.dart';
 import 'package:workmanager/workmanager.dart';
 
+/// Enum for the different tasks handled by WorkManager.
 enum WorkManagerTacks {
+  /// Task for handling step counter notification.
   stepCounterNotification,
 }
 
+/// Entry point for callback dispatch from Workmanager.
 @pragma('vm:entry-point')
 void _callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     await setupLocator();
     if (task == WorkManagerTacks.stepCounterNotification.name) {
       final notificationHelper = locator.get<NotificationsHelper>();
-      return notificationHelper.handleStepCounterNotificationTack();
+      return notificationHelper.handleStepCounterNotificationTask();
     }
     return false;
   });
 }
 
+/// Singleton class for managing work tasks using Workmanager.
 @LazySingleton()
 class WorkManagerHelper {
+
+  /// Initializes Workmanager and sets up the periodic/one-off tasks.
   Future<void> initialize() async {
     final workManager = Workmanager();
     await workManager.initialize(_callbackDispatcher);
@@ -36,6 +42,7 @@ class WorkManagerHelper {
       0,
     );
     final initialDelay = nextTask.difference(now);
+    /// at the moment, iOS doesn't allow periodic tasks
     if (Platform.isAndroid) {
       await workManager.registerPeriodicTask(
         'notification_periodic_step_count',
