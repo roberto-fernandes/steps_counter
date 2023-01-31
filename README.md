@@ -16,6 +16,8 @@
 
 The application uses a feature-driven directory structure. This project structure enables to scale the project by having self-contained features. At the moment we only have a single feature (the step counter) but in more complex applications we can have more features. This enables to scale as the number of features increases and allows developers to work on different features in parallel.
 
+<img src="file_tree.png" height="800">
+
 ## Packages Used
 
 - cupertino_icons
