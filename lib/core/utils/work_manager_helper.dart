@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:steps_counter/core/locator/locator.dart';
 import 'package:steps_counter/core/utils/notification_helper.dart';
@@ -27,37 +28,43 @@ void _callbackDispatcher() {
 /// Singleton class for managing work tasks using Workmanager.
 @LazySingleton()
 class WorkManagerHelper {
-
   /// Initializes Workmanager and sets up the periodic/one-off tasks.
   Future<void> initialize() async {
-    final workManager = Workmanager();
-    await workManager.initialize(_callbackDispatcher);
-    final now = DateTime.now();
-    final isPastTodaysReminder = now.hour >= 20;
-    final nextTask = DateTime(
-      now.year,
-      now.month,
-      isPastTodaysReminder ? now.day + 1 : now.day,
-      20,
-      0,
-    );
-    final initialDelay = nextTask.difference(now);
-    /// at the moment, iOS doesn't allow periodic tasks
-    if (Platform.isAndroid) {
-      await workManager.registerPeriodicTask(
-        'notification_periodic_step_count',
-        WorkManagerTacks.stepCounterNotification.name,
-        existingWorkPolicy: ExistingWorkPolicy.replace,
-        frequency: const Duration(days: 1),
-        initialDelay: initialDelay,
+    try {
+      final workManager = Workmanager();
+      await workManager.initialize(_callbackDispatcher);
+      final now = DateTime.now();
+      final isPastTodaysReminder = now.hour >= 20;
+      final nextTask = DateTime(
+        now.year,
+        now.month,
+        isPastTodaysReminder ? now.day + 1 : now.day,
+        20,
+        0,
       );
-    } else if (Platform.isIOS) {
-      await workManager.registerOneOffTask(
-        'notification_one_off_step_count',
-        WorkManagerTacks.stepCounterNotification.name,
-        existingWorkPolicy: ExistingWorkPolicy.replace,
-        initialDelay: initialDelay,
-      );
+      final initialDelay = nextTask.difference(now);
+
+      /// at the moment, iOS doesn't allow periodic tasks
+      if (Platform.isAndroid) {
+        await workManager.registerPeriodicTask(
+          'notification_periodic_step_count',
+          WorkManagerTacks.stepCounterNotification.name,
+          existingWorkPolicy: ExistingWorkPolicy.replace,
+          frequency: const Duration(days: 1),
+          initialDelay: initialDelay,
+        );
+      } else if (Platform.isIOS) {
+        await workManager.registerOneOffTask(
+          'notification_one_off_step_count',
+          WorkManagerTacks.stepCounterNotification.name,
+          existingWorkPolicy: ExistingWorkPolicy.replace,
+          initialDelay: initialDelay,
+        );
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
     }
   }
 }
