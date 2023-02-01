@@ -66,8 +66,10 @@ class _EditStepGoalWidgetState extends State<EditStepGoalWidget> {
               onPressed: () {
                 try {
                   final input = _controller.text.toString();
-                  final goal = int.parse(input);
-                  onGoalSelected(goal);
+                  if (input.isNotEmpty) {
+                    final goal = int.parse(input);
+                    onGoalSelected(goal);
+                  }
                 } catch (error) {
                   if (kDebugMode) {
                     print(error);
