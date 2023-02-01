@@ -10,15 +10,10 @@ import 'package:steps_counter/step_counter/data/repository/settings_repository.d
 ///
 /// It makes use of [WorkManagerHelper], [HealthRepository], and [SettingsRepository] to
 /// initialize, handle and show the daily and step counter notifications.
-///
-/// The class also checks for notification permission and requests it if not granted.
-///
-/// Use the `initializeDailyNotification` method to initialize daily notifications.
-/// Use the `handleStepCounterNotificationTack` method to handle step counter notifications.
 @LazySingleton()
 class NotificationsHelper {
-  static const String notificationPermissionNotGranted =
-      'Notification permission not granted';
+  static const String notificationEnablingError =
+      'notification_enabling_error';
 
   NotificationsHelper(
     this._workManagerHelper,

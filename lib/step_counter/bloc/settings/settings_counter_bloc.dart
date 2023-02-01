@@ -94,7 +94,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       emit(
         state.copyWith(
           status: DataStatus.failure,
-          error: NotificationsHelper.notificationPermissionNotGranted,
+          error: NotificationsHelper.notificationEnablingError,
           notificationStatus: false,
         ),
       );

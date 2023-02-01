@@ -20,7 +20,7 @@ class NotificationWidget extends StatelessWidget {
         final notificationStatusChanged =
             previousState.notificationStatus != state.notificationStatus;
         final permissionNotGranted = state.status == DataStatus.failure &&
-            state.error == NotificationsHelper.notificationPermissionNotGranted;
+            state.error == NotificationsHelper.notificationEnablingError;
         return notificationStatusChanged || permissionNotGranted;
       },
       listener: (context, state) {
@@ -28,7 +28,7 @@ class NotificationWidget extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             _NotificationSnackBar(
               backgroundColor: Colors.red,
-              message: 'Permissions not granted',
+              message: 'Not possible to enable notifications',
             ),
           );
         } else if (state.status == DataStatus.success &&
