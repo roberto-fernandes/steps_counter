@@ -6,8 +6,7 @@ import 'package:steps_counter/step_counter/data/repository/health_repository.dar
 import 'package:steps_counter/step_counter/data/repository/settings_repository.dart';
 
 
-/// Class `NotificationsHelper` is used to manage the device notifications.
-///
+/// Used to manage the device notifications.
 /// It makes use of [WorkManagerHelper], [HealthRepository], and [SettingsRepository] to
 /// initialize, handle and show the daily and step counter notifications.
 @LazySingleton()

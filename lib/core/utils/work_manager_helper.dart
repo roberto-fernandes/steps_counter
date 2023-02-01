@@ -28,7 +28,7 @@ void _callbackDispatcher() {
 /// Singleton class for managing work tasks using Workmanager.
 @LazySingleton()
 class WorkManagerHelper {
-  /// Initializes Workmanager and sets up the periodic/one-off tasks.
+  /// Initializes [Workmanager] and sets up the periodic/one-off tasks.
   Future<void> initialize() async {
     try {
       final workManager = Workmanager();
